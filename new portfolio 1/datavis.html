@@ -1,0 +1,686 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>English Blooms and Bees: Mapping Decline with Data Visualisation 🌸</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="6d48e634-f326-4c6f-862a-19562bc7b84f" class="page mono"><header><h1 class="page-title">English Blooms and Bees: Mapping Decline with Data Visualisation 🌸</h1><p class="page-description"></p></header><div class="page-body"><p id="640aa430-0f01-422b-8d80-b1e443390446" class="">July 2023</p><p id="37210a0f-3d53-4477-8946-c5d961c18aea" class="">Tools: Python, Canva, <a href="https://ukpoms.org.uk/"> UK Pollinator Scheme</a> (Data) and XML</p><p id="d005a0ce-d687-4d22-8942-b723150638a4" class="">
+</p><blockquote id="8b73fc49-8a26-49e4-a464-c86631324717" class=""><em>For this data visualisation project, I will explore flower and bee density and further look into the decline in both bees and flowers. The reduction in flowers can impact the number of bees found in nature. Flowers are essential as they help attract pollen to plants that need to produce seeds and insects like bees which feed off pollen and nectar to create food for themselves. Bees moving from one flower to another make them the most essential natural pollinators.</em></blockquote><p id="35fa5ceb-347b-4b9a-a662-b65036d44ebe" class="">
+</p><p id="473eead6-2978-4885-99a6-096c95813ace" class="">For my end project, I have created a series of informative posters that displays various graphs showing the decline in flowers and bees over the years and a more visual bubble chart showing the different flower species in England. I decided to create an informative poster instead of other mediums, such as a website, because posters can be placed in different locations, e.g. a park, to target audiences interested in nature and biodiversity. It engages the viewer more visually and is simpler to digest since it&#x27;s easier to communicate a message physically. Posters are also easier to understand since they are accessible, allowing viewers of all literacy skills to understand.</p><p id="ceb9a74c-fb67-49df-a518-b373aae5aca1" class="">
+</p><p id="646f49e8-7469-4a52-bdc1-0f827fd65ec0" class=""><strong>Data:</strong> The data I will use from this project is from the<a href="https://ukpoms.org.uk/"> UK Pollinator Scheme</a>, which records the number of flower-visiting species such as bees and flowers. They collect data using pan traps to monitor insect populations. The UK Pollinator is an ideal data source because they are the first to generate systematic data on the abundance of insects.</p><p id="0446e8a2-32e5-4ff4-9371-e7b0e4208211" class="">
+</p><p id="27796fde-cf4c-4fb6-9a97-f82648c5c171" class=""><strong>Motivation:</strong> With the visualisations, I intend to show the varying species of flowers and the storytelling of the decline of flowers and bees and link them to the biodiversity of plants in England as well as various graphs, e.g., bubble charts and bar charts. I want to create an informative, accessible, and creative way of showing information.</p><p id="b654e3a3-96f0-4aa4-9902-b43498003cc3" class="">
+</p><p id="bd84c2da-bf18-499a-9642-8d777d492931" class=""><strong>Audience: </strong>The project audience is interested in nature, specifically biodiversity, pollination and global warming, since the decline of bees and flowers is a by-product.</p><p id="0ec03017-d837-4076-9b64-59dc38312c5a" class="">
+</p><p id="babb9633-24fe-4968-8f3c-10af418d3a5e" class=""><strong>Context:</strong>  The viewers will engage with the poster in areas like a park or community hubs like universities where the posters can be raised in discussions and create awareness around biodiversity and the decline in species.</p><p id="f0dedf6b-2332-422d-8f15-d07ee37a17b3" class="">
+</p><figure id="c51e7baf-3fd9-41b0-ab78-b3e3f5a7aa4f" class="image"><a href="English%20Blooms%20and%20Bees%20Mapping%20Decline%20with%20Data%20%206d48e634f3264c6f862a19562bc7b84f/1.png"><img style="width:1414px" src="English%20Blooms%20and%20Bees%20Mapping%20Decline%20with%20Data%20%206d48e634f3264c6f862a19562bc7b84f/1.png"/></a></figure><figure id="85b1b812-ad95-4903-80c2-27670842a24e" class="image"><a href="English%20Blooms%20and%20Bees%20Mapping%20Decline%20with%20Data%20%206d48e634f3264c6f862a19562bc7b84f/2.png"><img style="width:1414px" src="English%20Blooms%20and%20Bees%20Mapping%20Decline%20with%20Data%20%206d48e634f3264c6f862a19562bc7b84f/2.png"/></a></figure><figure id="59f24653-670e-420c-b9b9-37f147987f04" class="image"><a href="English%20Blooms%20and%20Bees%20Mapping%20Decline%20with%20Data%20%206d48e634f3264c6f862a19562bc7b84f/4.png"><img style="width:1414px" src="English%20Blooms%20and%20Bees%20Mapping%20Decline%20with%20Data%20%206d48e634f3264c6f862a19562bc7b84f/4.png"/></a></figure><figure id="a5534587-f52a-44b3-9054-95792f0e138f" class="image"><a href="English%20Blooms%20and%20Bees%20Mapping%20Decline%20with%20Data%20%206d48e634f3264c6f862a19562bc7b84f/Posters_for_Data_Visualisation.png"><img style="width:1414px" src="English%20Blooms%20and%20Bees%20Mapping%20Decline%20with%20Data%20%206d48e634f3264c6f862a19562bc7b84f/Posters_for_Data_Visualisation.png"/></a></figure><h1 id="eac1e3c2-7745-47d4-ae6a-025744f4218f" class="">Process</h1><p id="90ade0d9-e64e-40db-85e1-22b64ec8f00b" class="">
+</p><figure id="e5091e1f-c528-4c68-b70d-4582da93a237" class="image"><a href="English%20Blooms%20and%20Bees%20Mapping%20Decline%20with%20Data%20%206d48e634f3264c6f862a19562bc7b84f/4%201.png"><img style="width:1366px" src="English%20Blooms%20and%20Bees%20Mapping%20Decline%20with%20Data%20%206d48e634f3264c6f862a19562bc7b84f/4%201.png"/></a></figure><figure id="4cb95cdb-b183-4959-9f82-3e0b19420147" class="image"><a href="English%20Blooms%20and%20Bees%20Mapping%20Decline%20with%20Data%20%206d48e634f3264c6f862a19562bc7b84f/5.png"><img style="width:1366px" src="English%20Blooms%20and%20Bees%20Mapping%20Decline%20with%20Data%20%206d48e634f3264c6f862a19562bc7b84f/5.png"/></a></figure><figure id="a344f7b6-e215-4d82-8d36-f4c5ed038ffc" class="image"><a href="English%20Blooms%20and%20Bees%20Mapping%20Decline%20with%20Data%20%206d48e634f3264c6f862a19562bc7b84f/6.png"><img style="width:1366px" src="English%20Blooms%20and%20Bees%20Mapping%20Decline%20with%20Data%20%206d48e634f3264c6f862a19562bc7b84f/6.png"/></a></figure><figure id="c1febb32-5821-41c9-a29d-32f16d898182" class="image"><a href="English%20Blooms%20and%20Bees%20Mapping%20Decline%20with%20Data%20%206d48e634f3264c6f862a19562bc7b84f/7.png"><img style="width:1366px" src="English%20Blooms%20and%20Bees%20Mapping%20Decline%20with%20Data%20%206d48e634f3264c6f862a19562bc7b84f/7.png"/></a></figure><figure id="93ad7c59-276a-44a4-ac66-645792e4c518" class="image"><a href="English%20Blooms%20and%20Bees%20Mapping%20Decline%20with%20Data%20%206d48e634f3264c6f862a19562bc7b84f/8.png"><img style="width:1366px" src="English%20Blooms%20and%20Bees%20Mapping%20Decline%20with%20Data%20%206d48e634f3264c6f862a19562bc7b84f/8.png"/></a></figure><figure id="d69f16f5-dba8-4a64-b875-50c1d3a18844" class="image"><a href="English%20Blooms%20and%20Bees%20Mapping%20Decline%20with%20Data%20%206d48e634f3264c6f862a19562bc7b84f/9.png"><img style="width:1366px" src="English%20Blooms%20and%20Bees%20Mapping%20Decline%20with%20Data%20%206d48e634f3264c6f862a19562bc7b84f/9.png"/></a></figure><figure id="2d52a338-5631-4782-baa1-118a40bfe192" class="image"><a href="English%20Blooms%20and%20Bees%20Mapping%20Decline%20with%20Data%20%206d48e634f3264c6f862a19562bc7b84f/10.png"><img style="width:1366px" src="English%20Blooms%20and%20Bees%20Mapping%20Decline%20with%20Data%20%206d48e634f3264c6f862a19562bc7b84f/10.png"/></a></figure><h1 id="0470de3a-2652-485b-8768-9d434e556449" class="">Research Citations</h1><p id="3961c213-fc2f-4a3b-b9c0-8edab86956cf" class="">
+</p><p id="6964bd3a-acc8-43af-8879-cea1ad0228d4" class="">Goulson, D., Nicholls, E., Botías, C. and Rotheray, E.L., 2015. Bee declines driven by combined stress from parasites, pesticides, and lack of flowers. Science, 347(6229), p.1255957.</p><p id="d89a1c37-7093-46bc-8ce7-13677ce325f6" class="">Thomann, M., Imbert, E., Devaux, C. and Cheptou, P.O., 2013. Flowering plants under global pollinator decline. Trends in plant science, 18(7), pp.353-359.
+UK Pollinator Monitoring Scheme (2022). Flower-insect timed count data from the UK Pollinator Monitoring Scheme, 2017-2020 version 2. NERC EDS Environmental Information Data Centre. (Dataset). <a href="https://doi.org/10.5285/13aed7ac-334f-4bb7-b476-4f1c3da45a13">https://doi.org/10.5285/13aed7ac-334f-4bb7-b476-4f1c3da45a13</a></p><p id="f7f9c36a-d5d6-443b-bb3f-8ccd2323e6e7" class="">UK Pollinator Monitoring Scheme (2022). Pan-trap survey data from the UK Pollinator Monitoring Scheme, 2017-2020 version 2. NERC EDS Environmental Information Data Centre. (Dataset). <a href="https://doi.org/10.5285/2c43ba3c-d821-442c-989b-754451d72091">https://doi.org/10.5285/2c43ba3c-d821-442c-989b-754451d72091</a></p></div></article></body></html>

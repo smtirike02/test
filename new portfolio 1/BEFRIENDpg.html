@@ -1,0 +1,719 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>BEFRIEND: Interactive Art</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(0, 0, 0);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+	
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+
+li{
+        list-style: none;
+       text-decoration: none;
+    }
+
+   nav{
+    font-size: 0vw;
+    padding: 0%;
+	margin: 0%;
+    
+}
+
+.logo{
+  height: 5vw;
+  width: 7.5vw;
+ 
+}
+
+
+</style>
+</head><body><article id="648bb77b-e531-41b4-840b-73d6c2e29021" class="page mono"><header>
+	<nav>
+		<a href="/index.html"> <img class="logo" src="st..svg"alt="logo" />  </a>
+	   
+	   </li>
+	</nav>
+	<li>
+		<h1 class="page-title">BEFRIEND: Interactive Art</h1><p class="page-description"></p></header><div class="page-body"><p id="afb3e82b-4f81-4c73-bf79-e237edb8c1f8" class="">April 2023</p><p id="db153849-dbc6-4500-9d8c-99e07504c34d" class="">Tools: P5.JS, Processing</p><p id="2b58652c-bf2d-4a31-9a19-3037a0bf2b3a" class="">
+</p><blockquote id="75421e96-d766-4128-9be4-f2f57b1a5e67" class=""><em>Around 9% of the UK Elderly are lonely, and 30% show signs of loneliness. Loneliness can impact physical and mental health and lifestyle. Art therapy improves cognitive function in the elderly, primarily with neurocognitive disorders, e.g. Alzheimer&#x27;s &amp; Dementia. </em></blockquote><p id="4b536f76-8d65-47d7-8db2-a33b211976c4" class="">
+</p><p id="07e13c05-018a-4426-bf50-917897499c7e" class="">
+</p><p id="e7044d9b-7c45-450d-9b68-b61f873f454a" class="">BEFriend is an interactive art installation that allows the elderly to play and connect. This product would appear in areas where the elderly congregate, e.g. care homes and public indoor areas such as libraries and community centres. Interactive art allows others to communicate and project onto the work through touch or initiating response (Wong et al.,2009). The product will use technology such as IR Camera and a projector to make the experience interactive for the user.</p><p id="fcb05eaf-56b0-4d7a-9140-dfa866d01b63" class="">
+</p><p id="45fc0d36-9f77-422f-9f2d-c95640c2cb44" class="">BEFriend can also communicate with grandchildren or loved ones when visiting, especially in care homes (Jinsil Hwaryoung Seo, Sungkajun and Garcia, 2021). The advantage of using BEFriend is that it creates a fun interactive environment whilst stimulating the brain and eye-hand coordination  (Mahendran et al., 2018).</p><p id="c6961f54-fe72-4370-9583-a15f8f01aeef" class="">BEFriend will keep them engaged with others as well as unwind and play (Hsu and Wang, 2021). The art is appropriate for people with dementia and Alzheimers (Informa Healthcare, 2017). It can also improve the quality of life and the overall feeling of the environment (Jinsil Hwaryoung Seo, Sungkajun and Garcia, 2021). The art installation will include three different art styles that will consist of a common theme of nature and help create an environment of mindfulness and relaxation for the users (Valk et al., 2017).</p><p id="1b4ac7a7-df6c-4ff5-acaa-b241a130821c" class="">
+</p><p id="3fc1417e-e4c6-486b-90e7-802595e605c9" class="">
+</p><figure id="05b5cc9f-5cf6-4974-a5a6-9a82c1c0c3a3" class="image"><a href="BEFRIEND%20Interactive%20Art%20648bb77be53141b4840b73d6c2e29021/Untitled_design-2.gif"><img style="width:720px" src="BEFRIEND%20Interactive%20Art%20648bb77be53141b4840b73d6c2e29021/Untitled_design-2.gif"/></a></figure><figure id="4942c97f-8586-4580-bc86-396485b2b1cc" class="image"><a href="BEFRIEND%20Interactive%20Art%20648bb77be53141b4840b73d6c2e29021/GIF_1.gif"><img style="width:720px" src="BEFRIEND%20Interactive%20Art%20648bb77be53141b4840b73d6c2e29021/GIF_1.gif"/></a></figure><figure id="596d37b8-a268-4c2b-be0b-da62a477ce6a" class="image"><a href="BEFRIEND%20Interactive%20Art%20648bb77be53141b4840b73d6c2e29021/GIF_2.gif"><img style="width:720px" src="BEFRIEND%20Interactive%20Art%20648bb77be53141b4840b73d6c2e29021/GIF_2.gif"/></a></figure><figure id="43ec68d1-6c37-4fed-a6d0-abe865998257" class="image"><a href="BEFRIEND%20Interactive%20Art%20648bb77be53141b4840b73d6c2e29021/Untitled_design.gif"><img style="width:720px" src="BEFRIEND%20Interactive%20Art%20648bb77be53141b4840b73d6c2e29021/Untitled_design.gif"/></a></figure><p id="3b8c6a68-d494-43b7-9d27-e951ffa22d3f" class="">
+</p><p id="9ce11a57-bddd-43fc-9767-6b0199fe45b2" class="">This is a collection of gifs showing how the BEFRIEND works. I placed the interactive around on a large table, so the user had space to move around. When using the interactive art, I sat down to emulate how my users mainly use it. In the first gif (top left), I showed how the user could interact with the art by drawing. The IR camera made the interaction more accessible and allowed me to easily touch and click on areas.</p><h1 id="b895a2dc-e143-4e62-8b66-9f2e4948b758" class="">Prototypes</h1><figure id="13fcc8a3-f2e6-451b-9ba1-664e808c3fbc" class="image"><a href="BEFRIEND%20Interactive%20Art%20648bb77be53141b4840b73d6c2e29021/Screenshot_2023-09-11_at_19.34.47.png"><img style="width:672px" src="BEFRIEND%20Interactive%20Art%20648bb77be53141b4840b73d6c2e29021/Screenshot_2023-09-11_at_19.34.47.png"/></a></figure><figure id="41a546e7-445c-4726-982d-d3f29ec998b6" class="image"><a href="BEFRIEND%20Interactive%20Art%20648bb77be53141b4840b73d6c2e29021/Screenshot_2023-09-11_at_19.34.57.png"><img style="width:631px" src="BEFRIEND%20Interactive%20Art%20648bb77be53141b4840b73d6c2e29021/Screenshot_2023-09-11_at_19.34.57.png"/></a></figure><p id="c9d5765b-0ef0-4db2-8f50-d0bb0d5e1e5a" class="">
+</p><p id="086514aa-e263-4f9e-a70c-099b16028fbb" class="">As shown, I have created prototypes that outline how I would set up the interactive art installation and how the software will be displayed and used. For the setup, I have decided to use an IR camera to enable a touchscreen interface and a projector to display it onto the surface. I have also planned the user journey to show how the user can navigate through the application. Lastly, I have included wireframes to illustrate the structure of the interactive art.</p><h1 id="d649b83f-3b3b-47a0-8dbd-3d8ed91a90dd" class="">User Groups</h1><h3 id="6368d445-b52c-473f-b83a-dc3ac67d6514" class="">The Elderly</h3><ul id="534e531e-5a24-4adb-bbd4-f882c485cf0f" class="bulleted-list"><li style="list-style-type:disc">BEFRIEND allows the elderly to engage in a low-demanding activity which can combat loneliness (Hsu and Wang, 2021). It enables social gathering and creativity. Also, it can reduce stress and improve well-being (Jinsil Hwaryoung Seo, Sungkajun and Garcia, 2021).</li></ul><ul id="a90493bc-12e2-433c-86c7-7b97f776f7ec" class="bulleted-list"><li style="list-style-type:disc">It also allows accessibility, e.g. inverse button, to enable the user to see the contrast between icons and the art and make the interactive art clear (Pinheiro, 2022).</li></ul><h3 id="57f75b0c-b623-4891-a07e-a4d7a73178d1" class="">The Elderly with Dementia</h3><ul id="e5d86308-97dd-48a3-8166-d668046128f3" class="bulleted-list"><li style="list-style-type:disc">Improves cognitive health and overall well-being by raising entertainment levels. And can evoke nostalgia and reminds them of memories (Informa Healthcare, 2017).</li></ul><ul id="83f0d7e1-98ae-4a21-99da-f63d00cc34d8" class="bulleted-list"><li style="list-style-type:disc">It can connect the elderly in care homes with the outside world (Informa Healthcare, 2017).</li></ul><h3 id="0abfe05b-76b5-45ac-93d0-b99f364da824" class="">Users with Motor Impairments</h3><ul id="61e11815-8620-4c8a-bef6-2f0e2ac556cd" class="bulleted-list"><li style="list-style-type:disc">Allows users with motor issues to play with the interactive art effortlessly. The BEFRIEND is accessible by increasing sensitivity when touching the interactive art (Montague et al.,2012).</li></ul><h1 id="82786f18-247b-41b1-bd0f-0b84a06188a2" class="">Accessibility</h1><p id="4874cdcd-a76e-4d58-bb47-5e07d1e45f8a" class="">Ageing can impact numerous things, but mobility and vision are the most profound. From 40, the eyes start to lose their flexibility which causes a condition called presbyopia. Presbyopia causes images to focus behind the retina with decreased visual acuity (Pinheiro, 2022).</p><p id="b44e47ec-1a43-4387-a2e2-6fd824bae6a2" class="">A study in South Korea showed that Korean Seniors preferred bright and pastel colours instead of dark colours (Cheng1, Lee1 and Lee1, n.d.). Knowing this gives further insight into what the elderly like regarding colour. The installation will use colours that also have positive connotations since colours can bring back nostalgia to the elderly (Cheng, Lee and Lee, 2007).</p><p id="dd7dd8e9-7e15-4c2d-ab21-92926581200d" class="">For this project, to combat this, the art will use colours catered to those with ageing eyes and implement bright, transparent colours to make it more prominent (Cheng, Lee and Lee, 2007). The installation will be placed on a table so the seniors can sit around comfortably.</p><p id="1e59516a-4878-4621-a73d-7eb058b3930f" class="">For accessibility within the BEFriend,  there will be a button on the side of the interactive art to toggle the inverse colour button. Moreover, to make their user experience more friendly, BEfriend will increase sensitivity so that the user does not have to press hard onto the surface. Compatible with those who have motor issues (Montague et al.,2012).</p><p id="f9c6526c-8550-49ba-84dd-e737349f3d8f" class="">
+</p><p id="13014265-0753-4e1f-8dbd-bfc272b1156b" class="">
+</p><h2 id="8430bfcc-a6ee-4b1a-9766-1de3051b2403" class="">Research Citations</h2><p id="72726e91-0bb9-401d-b02e-23f8cb73510a" class="">Cheng, H.-I., Lee, K.-H. and Lee, H. (2017). 1 COLOR PREFERENCE OF THE KOREAN ELDERLY. Semantic Scholar. Available at: <a href="https://www.semanticscholar.org/paper/1-COLOR-PREFERENCE-OF-THE-KOREAN-ELDERLY-Cheng-Lee/3a946d7b25734272ae645fcf2758004ff39903fc#citing-papers">https://www.semanticscholar.org/paper/1-COLOR-PREFERENCE-OF-THE-KOREAN-ELDERLY-Cheng-Lee/3a946d7b25734272ae645fcf2758004ff39903fc#citing-papers</a> (Accessed: 15 January 2023).</p><p id="14589b73-8ac3-4890-938e-64452ffaabbe" class="">Crewdson, J.A., 2016. The effect of loneliness in the elderly population: a review. Healthy Aging &amp; Clinical Care in the Elderly, 8, p.1.
+‌
+Frontiers in Public Health, Sungkajun, A., Garcia, B. and Hwaryoung Jinsil, J. (2021). Developing the Art–Technology Intergenerational Community Program for Older Adults’ Health and Social... [online] ResearchGate. Available at: <a href="https://www.researchgate.net/publication/352688230_Developing_the_Art-Technology_Intergenerational_Community_Program_for_Older_Adults%27_Health_and_Social_Connectedness">https://www.researchgate.net/publication/352688230_Developing_the_Art-Technology_Intergenerational_Community_Program_for_Older_Adults&#x27;_Health_and_Social_Connectedness</a> [Accessed 15 Jan. 2023].
+‌
+Informa Healthcare (2017). Figure 2. Examples of calming (A), activating (B), interactive and (C)... [online] ResearchGate. Available at: <a href="https://www.researchgate.net/figure/Examples-of-calming-A-activating-B-interactive-and-C-content_fig2_314837770">https://www.researchgate.net/figure/Examples-of-calming-A-activating-B-interactive-and-C-content_fig2_314837770</a> [Accessed 15 Nov. 2022].</p><p id="296e16a6-5527-4100-a0e7-e5af027c2fff" class="">Mahendran, R., Gandhi, M., Moorakonda, R. B., Wong, J., Kanchi, M. M., Fam, J., Rawtaer, I., Kumar, A. P., Feng, L. and Kua, E. H. (2018). ‘Art therapy is associated with sustained improvement in cognitive function in the elderly with mild neurocognitive disorder: findings from a pilot randomized controlled trial for art therapy and music reminiscence activity versus usual care’. Trials, 19 (1). doi: 10.1186/s13063-018-2988-6.</p><p id="3c2acd84-e97f-4e6d-9310-bab1af61b117" class="">Moody, E. and Phinney, A., 2012. A community-engaged art program for older people: Fostering social inclusion. Canadian Journal on Aging/La Revue canadienne du vieillissement, 31(1), pp.55-64.</p><p id="38062899-890c-4122-a1c8-1290f0040fc5" class="">Montague, K., Hanson, V.L. and Cobley, A., 2012, October. Designing for individuals: usable touch-screen interaction through shared user models. In Proceedings of the 14th international ACM SIGACCESS conference on Computers and accessibility (pp. 151-158).</p><p id="1fda8954-304e-4782-943d-a786c783ad86" class="">Pinheiro, C. (2022) Designing for elderly people-ergonomics of vision, AHFE International. AHFE International. Available at: <a href="https://www.academia.edu/79769407/Designing_for_Elderly_People_Ergonomics_of_Vision?auto=citations&amp;from=cover_page+%5B">https://www.academia.edu/79769407/Designing_for_Elderly_People_Ergonomics_of_Vision?auto=citations&amp;from=cover_page+[</a> (Accessed: January 15, 2023).</p><p id="34454565-9abc-4f60-9ef3-a3ca82a4aeb8" class="">Richard, A., Rohrmann, S., Vandeleur, C.L., Schmid, M., Barth, J. and Eichholzer, M., 2017. Loneliness is adversely associated with physical and mental health and lifestyle factors: Results from a Swiss national survey. PloS one, 12(7), p.e0181442.</p><p id="fd902cc0-12e1-4335-b59b-867ccda9ef0e" class="">Schnelle, J.F., Ouslander, J.G. and Cruise, P.A., 1997. Policy without technology: A barrier to improving nursing home care. The Gerontologist, 37(4), pp.527-532.</p><p id="663b6541-fbdd-4724-a308-5e3840f140f7" class="">Wong, C.O., Jung, K. and Yoon, J., 2009. Interactive Art: The Art That Communicates. Leonardo, 42(2), pp.180-181.</p><p id="cd2aa99f-38ec-492e-9df8-7a4e8080427e" class="">Valk, C., Lin, X., Hu, J., Eindhoven University of Technology and Fijes, L. (2017). Closer to Nature - Interactive Installation Design for Elderly with Dementia. [online] ResearchGate. Available at: <a href="https://www.researchgate.net/publication/317060028_Closer_to_Nature_-_Interactive_Installation_Design_for_Elderly_with_Dementia">https://www.researchgate.net/publication/317060028_Closer_to_Nature_-_Interactive_Installation_Design_for_Elderly_with_Dementia</a> [Accessed 15 Jan. 2023].</p></div></article></body></html>

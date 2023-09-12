@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,700&family=Montserrat:ital,wght@0,300;0,700;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,700&family=Montserrat:ital,wght@0,300;0,700;1,700&display=swap');
+
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@200&family=Poppins:ital,wght@0,100;1,400&display=swap');
+
+
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300&display=swap');
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: lighter;
+    font-size: 1.5vw;
+}
+
+
+header{
+    font-size: 1.5vw;
+    padding: 6%;
+}
+
+.logo{
+  height: 5vw;
+  width: 7.5vw;
+  padding-right: 10vw;
+}
+
+  
+  li a { 
+    
+    
+    position: flex;
+    text-decoration: none;
+    color: #000000;
+   
+    font-family: 'DM Sans', sans-serif;
+    font-weight: lighter;
+     display: block;
+  
+  }
+  a {
+   float: right;
+   padding-left: 1%;
+    display: block;
+    text-decoration: none;
+  color: black;
+   
+  
+  }
+/* blur animation background
+.blur {
+    width: 447.86px;
+    height: 581.61px;
+    left: 1093.72px;
+    top: 564.42px;
+    position: absolute;
+    transform: rotate(160.38deg);
+    transform-origin: 0 0;
+    opacity: 0.70;
+    background: #D21E54;
+    box-shadow: 100px 100px 100px;
+    filter: blur(500px);
+}
+
+.blur1 {
+
+    width: 243.30px;
+    height: 479.45px;
+    left: 922.84px;
+    top: 509.08px;
+    position: absolute;
+    transform: rotate(160.38deg);
+    transform-origin: 0 0;
+    opacity: 0.50;
+    background: #D21E54;
+    box-shadow: 100px 100px 100px;
+    filter: blur(300px)
+}
+
+*/
+
+h1 {
+    position: center;
+     text-align: center;
+    color: black;
+    font-size: 8vw;
+    font-family:'DM Sans', sans-serif;
+    font-weight: 700;
+   
+    word-wrap: break-word;
+}
+
+p{
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 800;
+    font-size: 1vw;
+
+}
+h2{
+   
+    
+    color: #c11098;
+    font-size: 1.5vw;
+    font-family: 'IBM Plex Mono', monospace;
+    
+
+    font-weight: 800;
+  text-align: left;
+
+    word-wrap: normal;
+}
+
+
+@media only screen and (min-width: 600px) {
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 5rem;
+  padding: 6%;
+  text-align: center;
+  }
+
+}
+  
+  img {
+    border-radius: 5%;
+    object-fit: cover;
+ max-width: 100%;
+  vertical-align: middle;
+  width: auto;
+    height: auto;
+   
+  
+  
+  }
+  
+  .social{
+    display: grid;
+      float: right;
+      width:  2vw;
+      height: 2vw;
+      object-fit: cover;
+      grid-gap: 5rem;
+   
+  }

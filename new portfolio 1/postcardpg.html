@@ -1,0 +1,731 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Pedestrianisation&#x27;s Impact on City Bike Usage: A Postcard Study</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+li{
+        list-style: none;
+       text-decoration: none;
+    }
+
+   nav{
+    font-size: 0vw;
+    padding: 0%;
+	margin: 0%;
+    
+}
+
+.logo{
+  height: 5vw;
+  width: 7.5vw;
+ 
+}
+
+
+	
+</style></head><body><article id="f14a75d3-af6d-47a0-96b1-e340a04eb90d" class="page mono"><header>
+	<nav>
+		<a href="/index.html">
+	   <img class="logo" src="st..svg"alt="logo" />  </a>
+	   
+	   </li>
+	</nav>
+	<h1 class="page-title">Pedestrianisation&#x27;s Impact on City Bike Usage: A Postcard Study 🚲</h1><p class="page-description"></p></header><div class="page-body"><p id="a447adee-5c5a-4813-8471-c40a14d9219b" class="">July 2023</p><p id="a2e7b337-26d9-4455-a162-948840f4cec0" class="">Tools: Python (Matplotlib,Requests), CityBike API (<a href="http://api.citybik.es/v2/">http://api.citybik.es/v2/</a>)</p><p id="ca6e8f72-2ad8-4e40-b6f4-d7c95f49b106" class="">
+</p><p id="7b074dd8-16dc-4268-86a8-b0b0226adfed" class="">Inspired by: Dear Data (<a href="http://www.dear-data.com/theproject">http://www.dear-data.com/theproject</a>)</p><p id="9c5f7a0e-6c4e-4d59-a293-b58b8f655a26" class="">
+</p><blockquote id="5db2493d-20ec-4f30-b092-ba775ca6632a" class=""><em>My project will highlight the usage of city bikes worldwide and see if there&#x27;s a connection between infrastructure and the use of bicycles within a city. I want to display if pedestrianisation equals more bike usage within the city. Pedestrianisation is creating an area where it is converted to areas for walking use. For the outcome, I will create hand-drawn postcards showing visual data from each city with the most bike usage to display my idea.</em></blockquote><p id="ab5922bb-c777-45ef-ad1c-12f944b346a7" class="">
+</p><figure id="b4e49603-461d-4c2f-acb6-be08b19ce8d5" class="image"><a href="Pedestrianisation&#x27;s%20Impact%20on%20City%20Bike%20Usage%20A%20Po%20f14a75d3af6d47a096b1e340a04eb90d/BIG_DATA.jpg"><img style="width:1324px" src="Pedestrianisation&#x27;s%20Impact%20on%20City%20Bike%20Usage%20A%20Po%20f14a75d3af6d47a096b1e340a04eb90d/BIG_DATA.jpg"/></a></figure><p id="c33b9154-7af2-48b7-bc06-f1a365dd6013" class="">Final Product</p><p id="a1aa4e53-f943-48ae-ac8c-534c32b9365e" class="">
+</p><p id="eff3d852-4e6b-4111-8303-c827eacc1087" class="">The idea of using postcards stuck with me because people use postcards to share experiences and information by posting them. And allows the reader to stop and experience. In contrast, biking allows you to experience the world around you physically. I decided to base my idea on city bikes and postcards because they both use movement to connect with their surroundings and build an appreciation of the world around them. Postcards enable the transmission of personal information without relying on digital means, which aligns with my view about being present.</p><p id="78d7ff01-e556-4825-8443-08bda1262e4a" class="">
+</p><h1 id="898f74ba-35eb-4ded-bf10-29787ee3d901" class="">Final Product</h1><figure id="c83801bb-c9b3-4957-94c1-fe63191a72bd" class="image"><a href="Pedestrianisation&#x27;s%20Impact%20on%20City%20Bike%20Usage%20A%20Po%20f14a75d3af6d47a096b1e340a04eb90d/BIG_DATA.jpg"><img style="width:1324px" src="Pedestrianisation&#x27;s%20Impact%20on%20City%20Bike%20Usage%20A%20Po%20f14a75d3af6d47a096b1e340a04eb90d/BIG_DATA.jpg"/></a></figure><p id="f7414198-6e13-4fed-b305-f87baf236335" class="">
+</p><p id="128b3957-5119-4b16-958b-e38c46271899" class="">For Thessaloniki, I decided to draw a big wheel. The keys inside the wheel show the empty slots and free bikes. They remind me of bike wheel light attachments. I decided to group my data in empty slots because it&#x27;ll be easier for the reader to interpret.</p><p id="12427977-9694-492c-b9cc-30c700b9dadb" class="">
+</p><p id="b729f43e-570d-45fd-bf21-b0cda9e83e70" class="">For Turin, I decided to use trails to show data. The wheels show the number of free bikes in that specific station, and the people icons show the empty slots for the bike stations. For visual purposes, I decided to keep the theme of pedestrianisation by showing the trails of movement, wheels,bikes and people.</p><p id="73f1a567-8278-430c-82c2-34daa18af731" class="">
+</p><figure id="43fc267e-f1ad-42e2-9c85-10222964c44a" class="image"><a href="Pedestrianisation&#x27;s%20Impact%20on%20City%20Bike%20Usage%20A%20Po%20f14a75d3af6d47a096b1e340a04eb90d/Screenshot_2023-09-11_at_22.38.20.png"><img style="width:744px" src="Pedestrianisation&#x27;s%20Impact%20on%20City%20Bike%20Usage%20A%20Po%20f14a75d3af6d47a096b1e340a04eb90d/Screenshot_2023-09-11_at_22.38.20.png"/></a></figure><p id="2fbd0adb-9476-4931-b12a-32bd2c7f4766" class="">
+</p><p id="3abfbb5a-5b7e-43af-8232-91bea6abaa5e" class="">For Łódź, I drew a &quot;map&quot; of an ideal pedestrianised area. The map includes a park, bike lanes and a place like a cafe for people to congregate. The rest of the map is a negative space that is pedestrianised. The free bikes key are bike stations within the area, and the dashes are the number of stations.</p><p id="6336ef39-8df3-4b08-8e39-4d5c85602bb3" class="">
+</p><p id="68a87b87-b008-477a-9cb0-07e8e24a492a" class="">For Berlin, I decided to show data representation of the no. of stations as buildings. I chose buildings because they link to infrastructure and planning of the cities. The tandem bike shows the number of free bikes available in that station. I drew a tandem bike to use the bike seats to indicate the free bikes available. The people icons were another way to show the bike slots total of the station.</p><h1 id="7b892a7f-7fb2-4575-b5f4-832fefd9ab0c" class="">Research</h1><p id="8e5ed08e-27b8-4c9f-a3d5-ab1746c2b525" class="">Pedestrianisation is vital in creating an urban environment that contributes to sustainability. Creating livable cities is essential and impacts sustainability by reducing carbon emissions and allowing citizens to be healthy by walking everywhere. In the long term, it creates a better quality of life for locals and cities worldwide. They have implemented pedestrianisation in Copenhagen by making no-car zones and investments in cycling and public transport infrastructure (Yassin,2019).
+By creating these enforcements, Copenhagen has lowered emissions and made areas more pedestrianisation friendly. This was a driving factor for my work because it started spaces for citizens to be more environmentally sustainable and efficient mobility.</p><p id="faaa82ca-784f-416c-9d60-36f8b5c3cd16" class="">
+</p><p id="fae1ab85-f2b9-4019-a6b8-f496ec5200fc" class="">More pedestrianised areas also mean increased use of bikes, which will raise bike-sharing usage. Bike sharing can also help locals get to other closer transportation links, e.g., buses, without using cars. Biking also has health benefits since it is a physical activity. Investments in bike sharing not only helps users around the local area but keep areas empty for pedestrians (DeMario,2009). Using bicycles and pedestrians on the road can signify how well a city&#x27;s infrastructure is set up. By looking at city bike data, you can see how well a city is built for mobilisation.</p><p id="e2197d81-7bf0-4dcc-afb2-ff4d401c318a" class="">
+</p><h1 id="8ecb8d7d-92f2-49c8-b64f-a84c9c514ff3" class="">Process</h1><p id="8f261e0a-c47a-4420-86ed-f52b109705d6" class="">In the project&#x27;s early stages, I used Python libraries like requests, JSON, Numpy, Counter, and Excel for data scraping. I gathered data from the CityBikes API, available at <a href="http://api.citybik.es/v2/"><strong>http://api.citybik.es/v2/</strong></a>, with a focus on the &#x27;networks&#x27; section, which provided vital information like id, country, company, and name. This step set the foundation for my analysis of bike-sharing data in different cities.</p><p id="c177e784-f76d-4efa-a7ad-b48ff5587871" class="">
+</p><p id="c8fb9104-bbe8-4912-af89-6b33f4c32ae6" class="">Next, I delved into a thorough examination of the countries and companies involved in the bike-sharing network. Using the Counter library, I carefully studied the countries with active bike stations. The results showed that Italy, Germany, Poland, and the United States had the most bike stations. An interesting finding was the United States&#x27; high ranking, prompting me to explore its connection to pedestrianisation efforts.</p><figure id="dda778ce-5a6d-487e-8dd5-caf5dad2448b" class="image"><a href="Pedestrianisation&#x27;s%20Impact%20on%20City%20Bike%20Usage%20A%20Po%20f14a75d3af6d47a096b1e340a04eb90d/Screenshot_2023-09-11_at_22.24.31.png"><img style="width:1045px" src="Pedestrianisation&#x27;s%20Impact%20on%20City%20Bike%20Usage%20A%20Po%20f14a75d3af6d47a096b1e340a04eb90d/Screenshot_2023-09-11_at_22.24.31.png"/></a></figure><p id="0e62a129-9c64-441b-a1b2-dfc4fe7b9db5" class="">Image of Counter Data</p><p id="f823bd9f-8c38-46e2-8c39-75ea491fc3ca" class="">
+</p><p id="10f235e1-ba7f-4dfe-8ffd-c7e5e5d90f6f" class="">Continuing my analysis, I observed that network names matched the operating companies. This insight led me to investigate these companies, aided by the Counter module. Notably, companies like Nextbike, Bicincittà, EasyBike, and VRN emerged as key players. Importantly, these companies were mostly headquartered in the countries where they operated their bike-sharing networks.</p><p id="981d4be5-df97-4790-848a-afd2dc170149" class="">
+</p><figure id="ba7ddc32-52b3-4b55-8d65-2d3336af8b39" class="image"><a href="Pedestrianisation&#x27;s%20Impact%20on%20City%20Bike%20Usage%20A%20Po%20f14a75d3af6d47a096b1e340a04eb90d/Screenshot_2023-05-30_at_19.43.01.png"><img style="width:968px" src="Pedestrianisation&#x27;s%20Impact%20on%20City%20Bike%20Usage%20A%20Po%20f14a75d3af6d47a096b1e340a04eb90d/Screenshot_2023-05-30_at_19.43.01.png"/></a></figure><p id="c3deb11a-deb3-4066-9977-18ba7d6d2a33" class="">Image of Station Specific Data</p><p id="fe6c5825-4b10-48ce-8474-d559d7638433" class="">
+Moving on to station-specific data, I collected and analysed information such as the number of stations, mean bike availability, and mean empty slots. This data provided insights into the distribution and utilisation of bike stations. In addition, I scrutinised individual stations, examining their unique attributes such as station ID, free bikes, location, and timestamps. This deeper exploration helped me understand station dynamics and usage patterns.</p><p id="7d27974e-f4fd-4d68-9919-4f8dcbc9d917" class="">
+</p><figure id="1ac5f267-c4be-4469-8b86-331b8651b116" class="image"><a href="Pedestrianisation&#x27;s%20Impact%20on%20City%20Bike%20Usage%20A%20Po%20f14a75d3af6d47a096b1e340a04eb90d/Screenshot_2023-09-11_at_22.18.09.png"><img style="width:768px" src="Pedestrianisation&#x27;s%20Impact%20on%20City%20Bike%20Usage%20A%20Po%20f14a75d3af6d47a096b1e340a04eb90d/Screenshot_2023-09-11_at_22.18.09.png"/></a></figure><p id="7bbabd53-8d7d-4ddf-8320-9151d42cd664" class="">Google Maps Visualisation</p><p id="34c57233-acff-4ae7-8a72-6b0dc6e5f867" class="">
+To gain insights into pedestrianisation and its relationship with bike usage, I turned to Google Maps. This allowed me to assess the infrastructure around specific bike stations visually. Germany stood out with its robust pedestrianisation infrastructure, characterised by extensive bike lanes and proximity to amenities near stations. Italy had numerous street lanes but limited bike lanes, potentially reflecting park-centric usage. Greece boasted ample street lanes but lacked dedicated bike lanes, likely due to coastal riding preferences. Poland&#x27;s infrastructure featured street and bike lanes, primarily concentrated around main roads and schools. Notably, bike station placement appeared strategically, with stations in pedestrianised areas or tourist hubs.</p><p id="fc106e2b-46bb-4e05-b48f-1c9477669ffc" class="">
+</p><h1 id="4fb555f6-db61-4169-b8dd-c00740101769" class="">Data Visualisation</h1><p id="98834697-aa82-4525-8447-e98074e7ed16" class="">
+</p><p id="2dc77f05-8164-4f47-b135-1ff58e73da4c" class="">To start visualising, I started drawing how I would visualise the data. I wanted to keep the theme of padestrinisation, bikes and wheels. I also want to incorporate various geometric shapes and different sizes to have distinctive keys. Having distinctive keys can help present mass data. I kept the overall theme of the postcards, but I decided to change how I designed the front. </p><p id="652eb7a1-6557-4f1b-9d22-bf75ec985de0" class="">
+</p><figure id="f069a05b-2892-4969-a8a4-3a4caa33ba7f" class="image"><a href="Pedestrianisation&#x27;s%20Impact%20on%20City%20Bike%20Usage%20A%20Po%20f14a75d3af6d47a096b1e340a04eb90d/Screenshot_2023-09-11_at_22.30.02.png"><img style="width:778px" src="Pedestrianisation&#x27;s%20Impact%20on%20City%20Bike%20Usage%20A%20Po%20f14a75d3af6d47a096b1e340a04eb90d/Screenshot_2023-09-11_at_22.30.02.png"/></a></figure><p id="e0f0bf4e-2de5-47cb-aa92-0eabcdf27889" class="">FRONT(DRAFT)</p><figure id="95a81595-7e2a-4b0e-8140-3dbe232a619f" class="image"><a href="Pedestrianisation&#x27;s%20Impact%20on%20City%20Bike%20Usage%20A%20Po%20f14a75d3af6d47a096b1e340a04eb90d/Screenshot_2023-09-11_at_22.30.40.png"><img style="width:762px" src="Pedestrianisation&#x27;s%20Impact%20on%20City%20Bike%20Usage%20A%20Po%20f14a75d3af6d47a096b1e340a04eb90d/Screenshot_2023-09-11_at_22.30.40.png"/></a></figure><p id="9f113a98-cfba-4826-a719-df3a57e8dda7" class="">BACK</p><p id="7b0c790d-fa36-4b98-833d-015c1a43915f" class="">
+</p><p id="cae6eeaf-fb98-44c1-af30-b11b74688b6a" class="">I chose to place the visualisations at the front and the keys linked to the city bike data at the back. For example, for the bike on the bottom left of the data visualisation draft, the number of dashes in the trail shows the no. of stations. I also included additional data like the country, city, longitude, latitude and date on the right of the postcard where the address that your sending it to would be. And for visual purposes, I included a stamp of the countries to make it seem realistic and that the postcard is moving from one place to another.</p><p id="d5526bbe-bbea-476c-8d5c-a6e243f5fe31" class="">
+</p><p id="420ebf95-dae9-4b1e-860d-7760a838c8f8" class="">
+</p><h3 id="d891eb12-0521-4f03-9899-196b3d5379fb" class="">Research Citations</h3><p id="d60f8ff8-7192-4712-a70d-7a75d078f56c" class="">Yassin, H.H., 2019. Livable city: An approach to pedestrianization through tactical urbanism. Alexandria engineering journal, 58(1), pp.251-259.
+DeMaio, P., 2009. Bike-sharing: History, impacts, models of provision, and future. Journal of public transportation, 12(4), pp.41-56.</p></div></article></body></html>
